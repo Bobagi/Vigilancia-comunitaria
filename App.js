@@ -10,6 +10,7 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import useLinking from './navigation/useLinking';
 import LinksScreen from './screens/LinksScreen';
 import HomeScreen from './screens/HomeScreen';
+import RegisterScreen from './screens/RegisterScreen';
 import Firebase, { FirebaseProvider } from "./config/Firebase";
 
 const Stack = createStackNavigator();
@@ -57,13 +58,14 @@ export default function App(props) {
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-            <Stack.Navigator>
+            <Stack.Navigator>            
               {isLoggedIn ? (
                 <Stack.Screen name="Root" component={BottomTabNavigator} />
               ) : (
                   <>
                     <Stack.Screen name="Home" component={HomeScreen} />
                     <Stack.Screen name="Settings" component={LinksScreen} />
+                    <Stack.Screen name="Register" component={RegisterScreen} />                     
                   </>
                 )}
             </Stack.Navigator>

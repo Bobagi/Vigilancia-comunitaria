@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import LoginScreen from '../screens/LoginScreen';
 import FeedScreen from '../screens/FeedScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -56,6 +57,15 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <FontAwesome name="user-o" size={24} color="#fafafa" />,
         }}
       />
+      <BottomTab.Screen
+        name="Register"
+        component={RegisterScreen}
+        options={{
+          title: 'Register',
+          tabBarVisible: false,
+          tabBarIcon: ({ focused }) => <FontAwesome name="user-profile" size={24} color="#fafafa" />,
+        }}
+      />
     </BottomTab.Navigator>
 
   );
@@ -80,6 +90,8 @@ function getHeaderTitle(route) {
     case 'Links':
       return 'Links to learn more';
     case 'Login':
-      return 'Links to learn more';
+      return 'Welcome back';
+    case 'Register':
+      return 'Star to use now';
   }
 }

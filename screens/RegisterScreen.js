@@ -19,9 +19,9 @@ import { withFirebaseHOC } from "../config/Firebase";
 
 const VALID_EMAIL = "";
 const VALID_PASSWORD = "";
-const LoginScreen = (props) => {
-    const { navigation, firebase } = props;
-
+const RegisterScreen = (props) => {
+    const { navigation, firebase } = props; 
+    const name = "";   
     const [email, setEmail] = React.useState(VALID_EMAIL);
     const [password, setPassword] = React.useState(VALID_PASSWORD);
     const [errors, setErrors] = React.useState([]);
@@ -63,12 +63,17 @@ const LoginScreen = (props) => {
         setPassword(password)
     }
 
-
-
     return (
         <KeyboardAvoidingView style={styles.container}>
-            <ImageBackground source={require('../assets/images/login-bg.png')} style={[styles.image]}>
+            <ImageBackground source={require('../assets/images/robot-dev.png')} style={[styles.image]}>
 
+                <CustomTextInput                    
+                    value={name}
+                    textContentType="text"
+                    type="text"
+                    style={styles.input}
+                    placeholder="Nome"
+                />
                 <CustomTextInput
                     onChangeText={updateEmail}
                     value={email}
@@ -87,15 +92,12 @@ const LoginScreen = (props) => {
                     placeholder="Senha"
                 />
                 <CustomButton isDisabled={botaoLogarDesativado}
-                    onPress={() => handleOnLogin()} title="Entrar" />
+                 title="Entrar" />
                 <CustomText onPress={() => props.navigation.navigate('Links')}
                     style={styles.opcoesFinais}>
-                    Esqueceu a senha?
+                    Teste Navigate Links
                 </CustomText>
-                <CustomText onPress={() => props.navigation.navigate('Register')}
-                    style={styles.opcoesFinais}>
-                    Criar uma nova conta
-                </CustomText>
+                
                 <Button
                     title="Sign In with Google "
                     onPress={async () => handleLoginGoogle()}
@@ -106,13 +108,16 @@ const LoginScreen = (props) => {
     );
 }
 
-export default withFirebaseHOC(LoginScreen)
+export default withFirebaseHOC(RegisterScreen)
 
-LoginScreen.navigationOptions = {
+RegisterScreen.navigationOptions = {
     header: null,
 };
 
 const styles = StyleSheet.create({
+    Button: {
+        width:'40%'       
+    },
     container: {
         flex: 1,
         backgroundColor: '#ffffff'
@@ -138,7 +143,7 @@ const styles = StyleSheet.create({
         borderLeftWidth: 1,
         borderRightColor: 'green',
         borderRightWidth: 1,
-        alignSelf: 'center',
+        alignSelf: 'center'
     },
     title: {
         width: '100%',
@@ -151,18 +156,19 @@ const styles = StyleSheet.create({
         color: 'grey'
     },
     input: {
+        backgroundColor: theme.colors.primary,
         padding: 13,
         paddingLeft: 25,
         marginBottom: 5,
         alignSelf: 'center',
-        marginTop: 15,
+        marginTop: 15
     },
     imageBg: {
         width: '100%',
         height: 70,
         resizeMode: "cover",
         justifyContent: 'flex-end',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     opcoesFinais: {
         color: 'grey',
